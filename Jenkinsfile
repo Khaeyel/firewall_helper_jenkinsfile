@@ -37,8 +37,8 @@ chmod 700 ~/.ssh/id_rsa
 
 #Run git config commands
 echo "Setting up git configs and pulling"
-git config --global user.email "kube-constech-jenkins@activision.com"
-git config --global user.name "kube-constech-jenkins"
+git config --global user.email "##REDACTED##"
+git config --global user.name "##REDACTED##"
 
 #Long-lived branch strategy for additions to the firewall
 git checkout -b jenkins_add_firewall_working_branch origin/jenkins_add_firewall_working_branch
