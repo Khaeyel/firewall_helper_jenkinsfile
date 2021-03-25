@@ -1,7 +1,7 @@
 pipeline {
     agent {
         node {
-        	//This doesn't really require a specific image. The only dependency on terraform here is for a terraform fmt
+            //This doesn't really require a specific image. The only dependency on terraform here is for a terraform fmt
             label 'base-with-terraform'
         }
     }
@@ -16,16 +16,16 @@ pipeline {
     stages {
         stage ('Checkout Scm') {
             steps {
-            	/*
-            	As this is a somewhat hardcoded implementation, the git URL needs to be the one hosting the actual terraform file that manages firewalls
-            	*/
+                /*
+                As this is a somewhat hardcoded implementation, the git URL needs to be the one hosting the actual terraform file that manages firewalls
+                */
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: '##GITURL_PLACEHOLDER##']]])
             }
         }
 
         stage ('Shell Script') {
             steps {
-            	//Again, hardcoded for an internal implementation, and thus redacted
+                //Again, hardcoded for an internal implementation, and thus redacted
                 withCredentials([sshUserPrivateKey(credentialsId: 'github', keyFileVariable: '##REDACTED##', usernameVariable: '##REDACTED##')]) {
                     sh '''#https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall
 set +x
